@@ -73,7 +73,7 @@ $(document).ready(function(){
 		console.log(luke)
 
 	}).on("mouseover", function(){
-		$(this).next(".popup").css('display', 'inline');
+		$(this).next(".popup").css('display', 'inline').html("<ul>HP:" + luke.hp +  "<ul>Attack:" + luke.attack + "<ul>Defense:" + luke.defense + "<ul>Speed:" + luke.speed);;
 	}).on("mouseout", function(){
 		$(this).next('.popup').css('display', 'none');
 	})
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
 
 	}).on("mouseover", function(){
-		$(this).next(".popup").css('display', 'inline');
+		$(this).next(".popup").css('display', 'inline').html("<ul>HP:" + yoda.hp +  "<ul>Attack:" + yoda.attack + "<ul>Defense:" + yoda.defense + "<ul>Speed:" + yoda.speed);;
 	}).on("mouseout", function(){
 		$(this).next('.popup').css('display', 'none');
 	})
@@ -101,7 +101,7 @@ $(document).ready(function(){
 		console.log(han)
 
 	}).on("mouseover", function(){
-		$(this).next(".popup").css('display', 'inline');
+		$(this).next(".popup").css('display', 'inline').html("<ul>HP:" + han.hp +  "<ul>Attack:" + han.attack + "<ul>Defense:" + han.defense + "<ul>Speed:" + han.speed);
 	}).on("mouseout", function(){
 		$(this).next('.popup').css('display', 'none');
 	})
