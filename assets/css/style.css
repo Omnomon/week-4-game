@@ -1,0 +1,80 @@
+* {
+}
+
+.hidden {
+	display: none
+}
+
+.gutter {
+	padding: 0 10px 0 10px;
+	margin: 0 10px 0 10px;
+}
+
+.btn-outline:hover {
+	border-width: 5px;
+	border-color: blue;
+
+}
+
+ .hoverinfo {
+	display: none;
+  	position: absolute;
+  	top: 15px;
+ 	left: 15px;
+ 	font-size: 28px;
+ 	color: #ffffff;
+  	cursor: pointer;
+}
+
+.character:hover:after {
+	content: attr(data-title);
+	display: block;
+	background: rgba(0,0,0,0.5);
+    color: white;
+    height: 50px;
+    width: 150px;
+    position: absolute;
+    text-align: center;
+    padding-top: 14px;
+    left: 0;
+    top: 0;
+
+}  
+
+.popup {
+	display: none;
+	position: absolute;
+	/* background: #000; */
+	opacity: 0.85;
+	width: 10%;
+	height: auto;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	margin-top: -130px;
+	margin-left: 170px;
+	color: #1E90FF;
+	z-index:1;
+}
+
+/* .popup:before {
+	content: "";
+	position: absolute;
+	top: 60px;
+	left: -25px;
+	z-index: 2;
+	border: solid 15px transparent;
+	color: #1E90FF;
+	pointer-events: none;
+} */
+
+img {
+	z-index:0;
+}
+
+.pic:hover + .popup {
+	display: block;
+}
+
+.wrap {
+	position:relative;
+}
