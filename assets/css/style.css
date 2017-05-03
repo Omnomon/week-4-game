@@ -6,6 +6,10 @@ body {
 	display: none
 }
 
+.setWidth {
+	max-width: 100%;
+}
+
 .gutter {
 	padding: 0 10px 0 10px;
 	margin: 0 10px 0 10px;
@@ -65,6 +69,22 @@ body {
 	z-index:1;
 }
 
+
+.popup2 {
+	display: none;
+	position: absolute;
+	/* background: #000; */
+	opacity: 0.85;
+	width: 10%;
+	height: auto;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	margin-top: 0px;
+	margin-left: 0px;
+	color: #1E90FF;
+	z-index:1;
+}
+
 /* .popup:before {
 	content: "";
 	position: absolute;
@@ -78,6 +98,7 @@ body {
 
 img {
 	z-index:0;
+	max-width: 100%
 }
 
 .img-thumbnail {
@@ -90,4 +111,12 @@ img {
 
 .wrap {
 	position:relative;
+}
+
+.enemyMarginTop {
+	margin-top: 20px
+}
+
+.enemyMarginLeft {
+	margin-left: 30px
 }

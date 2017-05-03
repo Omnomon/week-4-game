@@ -1,120 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>week-4-game</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+<head>
+    <title>week-4-game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="assets/javascript/game.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
+
 <body class="container">
-	<div class="row">
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>
-
-	</div>
-
-	<div class="row">
-		<div class="col-xs-12 starter">
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<div class="col-xs-1"></div>
-			<div class = "col-xs-2 wrap">
-				<img class="img-thumbnail btn btn-outline character btn-primary" id="lukeskywalker" src="assets/images/lukeskywalker.jpg" alt="luke">
-				<div class="popup"></div>
-			</div>
-			<div class="col-xs-2"></div>
-			<div class = "col-xs-2 wrap">
-				<img class="img-thumbnail btn btn-outline character" id="yoda" src="assets/images/yoda.jpg" alt="yoda">
-				<div class="popup"></div>
-			</div>
-			<div class="col-xs-2"></div>
-			<div class="col-xs-2 wrap">
-				<img class="img-thumbnail btn btn-outline character" id="hansolo" src="assets/images/hansolo.jpg" alt="han">
-				<div class="popup"></div>
-			</div>
-			<div class="col-xs-1"></div>
-		</div>
-
-		<br>
-		<br>
-		<br>
-	</div>
-
-	<div class="row">
-		<div class="col-xs-3" id="startMenu">
-		<br>
-		<br>
-		<br>
-		<br>
-		<div class="wrap">
-			<div class="hidden" id="player_character"></div>
-		</div>
-		<button type="button" class="btn btn-secondary" id="pickChar">Pick your Character</button>
-		<button type="button" class="btn btn-secondary hidden" id="reset"> Start Over? </button>
-
-		</div>
-		<div class="btn-group-vertical hidden col-xs-1" role="group" id="userActions">
-			<br>
-			<br>
-
-			<br>
-
-			<br>
-
-			<br>
-
-			<br>
-
-			<button type="button" class="btn btn-secondary" id="attack"> Attack</button>
-			<button type="button" class="btn btn-secondary" id="defend"> Defend</button>
-			<button type="button" class="btn btn-secondary" id="dodge"> Dodge</button>
-		</div>
-
-		<div class="col-xs-1">
-			<button type="button" class="btn btn-secondary hidden" id="selector"> Select your Opponent</button>
-		</div>
-
-		<div class="col-xs-1"></div>
-		<div class="col-xs-5 hidden" id="pickEnemy">
-			<img class="btn btn-outline img-thumbnail col-xs-6 enemy" id="vader" src="assets/images/darthvader.jpg">
-			<img class="btn btn-outline img-thumbnail col-xs-6 enemy" id="stormtrooper" src="assets/images/stormtrooper.jpg">
-			<img class="btn btn-outline img-thumbnail col-xs-6 enemy" id="atat" src="assets/images/atat.jpg"> 
-			<img class="btn btn-outline img-thumbnail col-xs-6 enemy" id="tiefighter" src="assets/images/tiefighter.jpg"> 
-		</div> 
-
-	</div>
-
-	<div class="row">
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>
-		<div class="col-xs-2"></div>		
-	</div>
-
-
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 starter">
+            <div class="col-xs-12 jumbotron text-center	">STAR WARS</div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2 wrap">
+                <img class="img-thumbnail btn btn-outline character btn-primary playerCharacterIs" id="lukeskywalker" src="assets/images/lukeskywalker.jpg" alt="luke">
+                <div class="popup"></div>
+            </div>
+            <div class="col-xs-2"></div>
+            <div class="col-xs-2 wrap">
+                <img class="img-thumbnail btn btn-outline character" id="yoda" src="assets/images/yoda.jpg" alt="yoda">
+                <div class="popup"></div>
+            </div>
+            <div class="col-xs-2"></div>
+            <div class="col-xs-2 wrap">
+                <img class="img-thumbnail btn btn-outline character" id="hansolo" src="assets/images/hansolo.jpg" alt="han">
+                <div class="popup"></div>
+            </div>
+            <div class="col-xs-1"></div>
+        </div>
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-xs-3" id="startMenu">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="wrap">
+                <div class="hidden character" id="player_character"></div>
+            </div>
+            <button type="button" class="btn btn-secondary" id="pickChar">Pick your Character</button>
+            <button type="button" class="btn btn-secondary hidden" id="reset"> Start Over? </button>
+        </div>
+        <div class="btn-group-vertical hidden col-xs-1" role="group" id="userActions">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button type="button" class="btn btn-secondary" id="attack"> Attack</button>
+            <button type="button" class="btn btn-secondary" id="defend"> Defend</button>
+            <button type="button" class="btn btn-secondary" id="dodge"> Dodge</button>
+        </div>
+        <div class="col-xs-1">
+            <button type="button" class="btn btn-secondary hidden" id="enemySelector"> Select your Opponent</button>
+        </div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-5 hidden" id="pickEnemy">
+            <div class="col-xs-6">
+                <div class="wrap col-xs-12">
+                    <img class="btn btn-outline img-thumbnail col-xs-12 enemy" id="vader" src="assets/images/darthvader.jpg">
+                    <div class="popup2"></div>
+                </div>
+                <div class="wrap col-xs-12">
+                    <img class="btn btn-outline img-thumbnail col-xs-12 enemy enemyMarginTop" id="stormtrooper" src="assets/images/stormtrooper.jpg">
+                    <div class="popup2 enemyMarginTop"></div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="wrap col-xs-12">
+                    <img class="btn btn-outline img-thumbnail col-xs-12 enemy enemyMarginLeft" id="atat" src="assets/images/atat.jpg">
+                    <div class="popup2"></div>
+                </div>
+                <div class="wrap col-xs-12">
+                    <img class="btn btn-outline img-thumbnail col-xs-12 enemy enemyMarginTop enemyMarginLeft" id="tiefighter" src="assets/images/tiefighter.jpg">
+                    <div class="popup2 enemyMarginTop"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden col-xs-5" id="enemy_character">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-2"></div>
+    </div>
 </body>
+
 </html>
