@@ -25,6 +25,30 @@ $(document).ready(function() {
     var computer;
 
 
+    // --------------------------set object values 
+
+    var luke = new fighter(70, 90, 50, 60, "assets/images/lukeskywalker.jpg");
+    var yoda = new fighter(60, 40, 40, 90, "assets/images/yoda.jpg");
+    var han = new fighter(80, 50, 90, 50, "assets/images/hansolo.jpg");
+    var vader = new enemy(90, 100, 90, 40, "assets/images/darthvader.jpg");
+    var stormtrooper = new enemy(20, 20, 10, 30, "assets/images/stormtrooper.jpg");
+    var atat = new enemy(100, 100, 90, 10, "assets/images/atat.jpg");
+    var tiefighter = new enemy(20, 50, 40, 100, "assets/images/tiefighter.jpg");
+
+    //----------------------------------- set elements with attribute value, object 
+
+    $("#lukeskywalker").data("value", luke)
+    $("#yoda").data("value", yoda)
+    $("#hansolo").data("value", han)
+    $("#vader").data("value", vader)
+    $("#stormtrooper").data("value", stormtrooper)
+    $("#atat").data("value", atat)
+    $("#tiefighter").data("value", tiefighter)
+
+    //------------------------------
+
+
+
     //-------------------------------- clean up code ----
     function getStats() {
         $(".btn-outline").removeClass("btn-primary playerCharacterIs")
@@ -38,7 +62,7 @@ $(document).ready(function() {
         $(this).addClass("btn-primary enemyCharacterIs")
         console.log($(this))
         console.log($(this).data("value"))
-        computer = $(this).data("value")
+ 
     }
 
     function onMouseOver() {
@@ -64,27 +88,7 @@ $(document).ready(function() {
     }
 
 
-    // --------------------------set object values 
-
-    var luke = new fighter(70, 90, 50, 60, "assets/images/lukeskywalker.jpg");
-    var yoda = new fighter(60, 40, 40, 90, "assets/images/yoda.jpg");
-    var han = new fighter(80, 50, 90, 50, "assets/images/hansolo.jpg");
-    var vader = new enemy(90, 100, 90, 40, "assets/images/darthvader.jpg");
-    var stormtrooper = new enemy(20, 20, 10, 30, "assets/images/stormtrooper.jpg");
-    var atat = new enemy(100, 100, 90, 10, "assets/images/atat.jpg");
-    var tiefighter = new enemy(20, 50, 40, 100, "assets/images/tiefighter.jpg");
-
-    //----------------------------------- set elements with attribute value, object 
-
-    $("#lukeskywalker").data("value", luke)
-    $("#yoda").data("value", yoda)
-    $("#hansolo").data("value", han)
-    $("#vader").data("value", vader)
-    $("#stormtrooper").data("value", stormtrooper)
-    $("#atat").data("value", atat)
-    $("#tiefighter").data("value", tiefighter)
-
-    //------------------------------
+    
 
     var playerIndex = [luke, yoda, han];
     var enemyIndex = [vader, stormtrooper, atat, tiefighter]
@@ -98,6 +102,14 @@ $(document).ready(function() {
         $("#reset").removeClass("hidden")
         $("#pickEnemy").removeClass("hidden")
         $("#selector").removeClass("hidden")
+        //player_character image is the image with playerCharacterIs
+        $("#player_character").html($("<img>").attr("src", $(".playerCharacterIs").data("value").source)).removeClass().addClass("img-thumbnail maxWidth");
+        $("#enemySelector").removeClass("hidden")
+        $("#player_character").data("value", $(".playerCharacterIs").data("value"))
+        player = $(".playerCharacterIs").data("value")
+        // check if playercharacter has object value 
+
+        console.log(player)
     })
 
     $("#reset").click(function() {
@@ -126,33 +138,26 @@ $(document).ready(function() {
         .click(getStats)
         .on("mouseover", onMouseOver)
         .on("mouseout", onMouseOut)
+        .removeClass("btn-primary")
 
-    // append character stats to player_character 
-    $("#pickChar").click(function() {
-        //player_character image is the image with playerCharacterIs
-
-        $("#player_character").html($("<img>").attr("src", $(".playerCharacterIs").data("value").source)).removeClass().addClass("img-thumbnail maxWidth");
-        $("#enemySelector").removeClass("hidden")
-        $("#player_character").data("value", $(".playerCharacterIs").data("value"))
-        player = $(".playerCharacterIs").data("value")
-
-
-        // check if playercharacter has object value 
-
-        console.log(player)
-    })
 
     //-----------------------------create enemy object 
-    $(".enemy")
+    $(".enemy ")
         .click(getEnemyStats)
         .on("mouseover", onEnemyMouseOver)
         .on("mouseout", onEnemyMouseOut)
+        .removeClass("btn-primary")
         //---------------------------
 
     // append enemy stats to computer 
 
     $("#enemySelector").click(function() {
-        $("#enemy_character").html($("<img>").attr("src", $(".enemyCharacterIs").attr("src"))).removeClass().addClass("img-thumbnail");
+        $("#enemy_character").html($("<img>").attr("src", $(".enemyCharacterIs").attr("src"))).removeClass().addClass("img-thumbnail maxWidth");
+        $(".enemy").addClass("hidden")
+        $("#enemySelector").addClass("hidden")
+        $("#enemySelector").addClass("hidden")
+        computer = $(".enemyCharacterIs").data("value")
+        console.log(computer)
 
 
     })
