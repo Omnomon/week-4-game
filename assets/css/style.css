@@ -12,7 +12,7 @@ body {
 }
 
 .btn-outline:hover {
-	border-width: 3px;
+	border-width: 3	px;
 	border-color: blue;
 
 }
@@ -46,6 +46,10 @@ body {
 
 }  
 
+.enemy {
+	
+}
+
 .popup {
 	display: none;
 	position: absolute;
@@ -74,6 +78,10 @@ body {
 
 img {
 	z-index:0;
+}
+
+.img-thumbnail {
+	overflow: inherit;
 }
 
 .pic:hover + .popup {
