@@ -105,6 +105,7 @@ $(document).ready(function() {
         //player_character image is the image with playerCharacterIs
         $("#player_character").html($("<img>").attr("src", $(".playerCharacterIs").data("value").source)).removeClass().addClass("img-thumbnail maxWidth");
         $("#enemySelector").removeClass("hidden")
+        $(".enemy").removeClass("hidden")
         $("#player_character").data("value", $(".playerCharacterIs").data("value"))
         player = $(".playerCharacterIs").data("value")
         // check if playercharacter has object value 
@@ -125,6 +126,7 @@ $(document).ready(function() {
         $("#enemySelector").addClass("hidden")
         $("#enemy_character").addClass("hidden")
         $("#lukeskywalker").addClass("btn-primary")
+        $(".enemy").addClass("hidden")
 
         //----reset all vars 
         var player = "";
@@ -156,6 +158,7 @@ $(document).ready(function() {
         $(".enemy").addClass("hidden")
         $("#enemySelector").addClass("hidden")
         $("#enemySelector").addClass("hidden")
+        $("#userActions").removeClass("hidden")
         computer = $(".enemyCharacterIs").data("value")
         console.log(computer)
 
