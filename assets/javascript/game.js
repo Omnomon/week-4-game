@@ -120,13 +120,15 @@ $(document).ready(function() {
         $(".character").removeClass("hidden btn-primary")
         $("#pickChar").removeClass("hidden")
         $("#userActions").addClass("hidden")
-        $("#player_character").html("").attr("src", "").addClass("hidden")
+        $("#player_character").html("").attr("src", "").addClass("hidden").data("value", "")
         $("#pickEnemy").addClass("hidden")
         $("#selector").addClass("hidden")
         $("#enemySelector").addClass("hidden")
         $("#enemy_character").addClass("hidden")
         $("#lukeskywalker").addClass("btn-primary")
         $(".enemy").addClass("hidden")
+        $(".container").removeClass("hidden")
+        $(".statChange").addClass("hidden")
 
         //----reset all vars 
         var player = "";
@@ -169,17 +171,77 @@ $(document).ready(function() {
     // each handle will call from object properties and combine differences 
     // it will also generate a predetermined stat boost, with a random value 
 
+
+    	var attackCount = 0; 
+
     $("#attack").click(function() {
+    	attackCount++
+        var computerLose;
+        console.log("attackCount is" + attackCount)
         console.log("attack button works")
+        console.log("player hp is" + player.hp)
+        console.log("computer hp is" + computer.hp)
+  		var calcPlayerDmg = computer.counterattack - player.defense;
+  		calcPlayerBuff = player.attack + (10*attackCount*Math.floor(Math.random()))
+  		if (calcPlayerDmg > 0) {
+        	player.hp = player.hp - calcDmg
+  		} else {
+  			console.log("damage zero")
+  		}
+
+  		calcComputerDmg = player.attack - computer.defense
+  		if (calcComputerDmg > 0) {
+  			computer.hp = computer.hp - calcComputerDmg
+  		} else {
+  			console.log(" comp damage zero")
+  		}
+
+        console.log(" new player hp is" + player.hp)
+        console.log("new computer hp is" + computer.hp)
+        if (computer.hp <= 0 ) {
+        	console.log("computer died")
+        	computerLose +=1 
+        	console.log(computerLose)
+        	$("#enemy_character").addClass("hidden")
+        	player.attack = player.attack += attackCount*5
+       		$(".statChange").removeClass("hidden").html("Your HP is now " + player.hp + "<ul>Your Attack is now " + player.attack).css("color", "red")
+
+        } 
+        if (player.hp <= 0) {
+        	console.log("player died")
+        	$("#player_character").addClass("hidden")
+        }
+
 
     })
 
+    var defenseCount = 0;
+
     $("#defend").click(function() {
+    	defenseCount ++ 
         console.log("defend button works")
+        console.log(player.defense)
+  		var calcPlayerDmg = computer.counterattack - player.defense;
+  		if (calcPlayerDmg > 0 ) {
+  			player.hp = player.hp - (calcPlayerDmg/2)
+  			player.defense = player.defense += (10*defenseCount*Math.floor(Math.random()))
+  			console.log("player defense is now" + player.defense)
+  			console.log(player.defense)
+  		}
+  		$(".statChange").removeClass("hidden").html("Your HP is now " + player.hp + "<ul> Your Defense is now " + player.defense).css("color", "red")
+        
     })
 
     $("#dodge").click(function() {
         console.log("dodge button works")
+		playerDodge = player.speed * Math.floor(Math.random())
+		computerDodge = computer.speed = Math.floor(Math.random())
+		if ( playerDodge >= computerDodge ) {
+			computer.attack = computer.counterattack - 10 
+		} else {
+			player.hp - player.hp - computer.counterattack
+		}
+
     })
 
 
