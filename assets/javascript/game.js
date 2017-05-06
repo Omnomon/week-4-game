@@ -131,7 +131,7 @@ $(document).ready(function() {
             }
 
             function displayStats() {
-                $(".statChange").removeClass("hidden").html("Your HP is now " + player.hp + "<ul>Your Attack is now " + player.attack + "<ul> Your Defense is now " + player.defense + "<ul>Your speed is now " + player.speed).css("color", "red");
+                $(".statChange").removeClass("hidden").html("Your HP is now " + player.hp + "<ul>Your Attack is now " + player.attack + "<ul> Your Defense is now " + player.defense + "<ul>Your Speed is now " + player.speed).css("color", "red");
             }
 
             function playerDead() {
@@ -195,6 +195,7 @@ $(document).ready(function() {
                     $("#enemySelector").addClass("hidden")
                     $("#enemySelector").addClass("hidden")
                     $("#userActions").removeClass("hidden")
+                    $(".eventDisplay").html("")
                     computer = $(".enemyCharacterIs").data("value")
                     console.log(computer)
 
@@ -207,6 +208,7 @@ $(document).ready(function() {
 
 
                 var attackCount = 0;
+                var defeatedEnemies = 0;
 
                 $("#attack").click(function() {
                     attackCount++
@@ -216,27 +218,33 @@ $(document).ready(function() {
                     console.log("player hp is" + player.hp)
                     console.log("computer hp is" + computer.hp)
                     var calcPlayerDmg = computer.counterattack - player.defense;
+
+                    $(".eventDisplay").removeClass("hidden").html("You dealt " + calcComputerDmg + "<br> You received" + calcPlayerDmg)
+
                     if (calcPlayerDmg > 0) {
                         player.hp = player.hp - calcPlayerDmg
                     } else {
-                        player.defense = 0
+                        player.defense = player.defense*0.75
                     }
 
-                    calcComputerDmg = player.attack - computer.defense
+                    var calcComputerDmg = player.attack - computer.defense
                     if (calcComputerDmg > 0) {
                         computer.hp = computer.hp - calcComputerDmg
 
                     } else {
                         console.log(" comp damage zero")
+                        $(".eventDisplay").html("Your attack isn't high enough!")
                     }
 
-                    $(".eventDisplay").removeClass("hidden").html("You dealt " + calcComputerDmg + "<br> You received" + calcPlayerDmg)
 
                     console.log(" new player hp is" + player.hp)
                     console.log("new computer hp is" + computer.hp)
 
+
+
                     if (computer.hp <= 0) {
                         console.log("computer died")
+                        defeatedEnemies ++
                         $("#enemy_character").addClass("hidden")
                         player.attack = player.attack + attackCount * 5
                         $("#enemySelector").removeClass("hidden")
@@ -245,10 +253,12 @@ $(document).ready(function() {
                         $(".eventDisplay").removeClass("hidden").html("You dealt " + calcComputerDmg + "<br> You received" + calcPlayerDmg)
                         $("#userActions").addClass("hidden")
                         $(".enemyCharacterIs").addClass("enemyCharacterDead")
+                        $(".eventDisplay").html("You defeated an enemy!")
                       
                     }
                     if (player.hp <= 0) {
                         playerDead()
+                        $(".eventDisplay").removeClass("hidden").html("You died!")
                     }
 
                     displayStats()
@@ -267,6 +277,16 @@ $(document).ready(function() {
                         } 
 
 
+
+                    console.log(defeatedEnemies)
+
+                    if (defeatedEnemies === 4) {
+                        $(".eventDisplay").removeClass("hidden").html("You Win!")
+                    }
+
+
+
+
                 })
 
                 var defenseCount = 0;
@@ -277,8 +297,11 @@ $(document).ready(function() {
                     console.log(player.defense)
                     var calcPlayerDmg = computer.counterattack - player.defense;
                     player.hp = player.hp - 5;
+                    player.attack = player.attack*1.20
                     if (player.hp <=0) {
-                        playerDead()
+                        playerDead()    
+                    } else {
+                        $(".eventDisplay").removeClass("hidden").html("You defended and took reduced damage!")
                     }
                     player.defense = player.defense + (defenseCount * Math.floor(10 * Math.random()))
                     console.log("player defense is now" + player.defense)
@@ -295,13 +318,16 @@ $(document).ready(function() {
                     console.log(playerDodge)
                     console.log(computerDodge)
                     if (playerDodge >= computerDodge) {
-                        computer.counterattack = computer.counterattack - 10
                         console.log(computer.counterattack)
                         player.speed = player.speed*1.1
                         player.attack = player.attack*1.25
                         player.defense = player.defense*1.1
+                        $(".eventDisplay").html("You dodged!").removeClass("hidden")
+
                     } else {
                         player.hp = player.hp/2
+                        $(".eventDisplay").removeClass("hidden").html("You tried to dodge, but got hit!")
+
                     }
                     if (player.hp <=10) {
                         playerDead()
