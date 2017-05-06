@@ -31,7 +31,7 @@ $(document).ready(function() {
     var luke = new fighter(70, 90, 50, 60, "assets/images/lukeskywalker.jpg");
     var yoda = new fighter(60, 40, 40, 90, "assets/images/yoda.jpg");
     var han = new fighter(80, 50, 90, 50, "assets/images/hansolo.jpg");
-    var vader = new enemy(90, 100, 90, 40, "assets/images/darthvader.jpg");
+    var vader = new enemy(1000, 600, 690, 140, "assets/images/darthvader.jpg");
     var stormtrooper = new enemy(20, 20, 10, 30, "assets/images/stormtrooper.jpg");
     var atat = new enemy(100, 100, 90, 10, "assets/images/atat.jpg");
     var tiefighter = new enemy(20, 50, 40, 100, "assets/images/tiefighter.jpg");
@@ -39,7 +39,7 @@ $(document).ready(function() {
     var lukeReset = new fighter(70, 90, 50, 60, "assets/images/lukeskywalker.jpg");
     var yodaReset = new fighter(60, 40, 40, 90, "assets/images/yoda.jpg");
     var hanReset = new fighter(80, 50, 90, 50, "assets/images/hansolo.jpg");
-    var vaderReset = new enemy(90, 100, 90, 40, "assets/images/darthvader.jpg");
+    var vaderReset = new enemy(1000, 2500, 690, 140, "assets/images/darthvader.jpg");
     var stormtrooperReset = new enemy(20, 20, 10, 30, "assets/images/stormtrooper.jpg");
     var atatReset = new enemy(100, 100, 90, 10, "assets/images/atat.jpg");
     var tiefighterReset = new enemy(20, 50, 40, 100, "assets/images/tiefighter.jpg");
@@ -47,6 +47,7 @@ $(document).ready(function() {
     //------------------------set object reset values 
     function resetAllValues() {
 
+        // for some reason, attaching data reset values to this function sometimes breaks when the player dies. 
         $("#lukeskywalker").data("value", lukeReset).attr("src", lukeReset.source);
         $("#yoda").data("value", yodaReset).attr("src", yodaReset.source);
         $("#hansolo").data("value", hanReset).attr("src", hanReset.source);
@@ -71,11 +72,15 @@ $(document).ready(function() {
         $(".container").removeClass("hidden")
         $(".statChange").addClass("hidden")
         $(".eventDisplay").addClass("hidden")
+        $(".alreadyBeaten").addClass("hidden")
 
         //----reset all vars 
-        var player = "";
-        var computer = "";
-
+        player = "";
+        computer = "";
+        attackCount = 0;
+        defeatedEnemies = 0;
+        defenseCount = 0;
+        dodgeCount = 0;
     }
 
     //----------------------------------- set elements with attribute value, object 
@@ -142,11 +147,6 @@ $(document).ready(function() {
         $("#player_character").html("").html($("<img>").addClass("playerImage").attr("src", "assets/images/enemyGone.jpg")).removeClass().addClass("img-thumbnail maxWidth");
     }
 
-
-
-    var playerIndex = [luke, yoda, han];
-    var enemyIndex = [vader, stormtrooper, atat, tiefighter]
-
     // switch between pickChar and reset buttons // clean this all up by addding a reset to hidden/reset to appear class
 
     $("#pickChar").click(function() {
@@ -190,9 +190,15 @@ $(document).ready(function() {
     // append enemy stats to computer 
 
     $("#enemySelector").click(function() {
-        $("#enemy_character").html($("<img>").attr("src", $(".enemyCharacterIs").attr("src"))).removeClass().addClass("img-thumbnail maxWidth");
+        console.log($(".enemyCharacterIs").attr("src") === "assets/images/enemyGone.jpg")
+        if ($(".enemyCharacterIs").attr("src") === "assets/images/enemyGone.jpg") {
+            $("#attack").addClass("hidden")
+            $(".alreadyBeaten").removeClass("hidden").html("You already beat this enemy! Start Over!").css("color", "red")
+
+        } else {
+            $("#enemy_character").html($("<img>").attr("src", $(".enemyCharacterIs").attr("src"))).removeClass().addClass("img-thumbnail maxWidth");
+        }
         $("#pickEnemy").addClass("hidden")
-        $("#enemySelector").addClass("hidden")
         $("#enemySelector").addClass("hidden")
         $("#userActions").removeClass("hidden")
         $(".eventDisplay").html("")
@@ -259,6 +265,13 @@ $(document).ready(function() {
         if (player.hp <= 0) {
             playerDead()
             $(".eventDisplay").removeClass("hidden").html("You died!")
+            $("#lukeskywalker").data("value", lukeReset).attr("src", lukeReset.source);
+            $("#yoda").data("value", yodaReset).attr("src", yodaReset.source);
+            $("#hansolo").data("value", hanReset).attr("src", hanReset.source);
+            $("#vader").data("value", vaderReset).attr("src", vaderReset.source);
+            $("#stormtrooper").data("value", stormtrooperReset).attr("src", stormtrooperReset.source);
+            $("#atat").data("value", atatReset).attr("src", atatReset.source);
+            $("#tiefighter").data("value", tiefighterReset).attr("src", tiefighterReset.source);
         }
 
         displayStats()
